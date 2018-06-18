@@ -1,0 +1,94 @@
+﻿@{
+    PtEFLib.PTDbContext db = new PtEFLib.PTDbContext();
+    string karakter = ViewBag.yazi;
+}
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <article>
+
+
+                    @foreach (var q in db.Results.Where(x => x.Letter == karakter))
+                    {
+                        <p style="text-align: justify;">
+                            <strong>Karakter Temel Özellikleriniz:</strong>
+                            @if (q.ColorId == 1)
+                            {<a style="text-align: justify;color:red;"><b>Kırmızı</b></a> }
+                            @if (q.ColorId == 2)
+                            {<a style="text-align: justify;color:gold;"><b>Sarı</b></a> }
+                            @if (q.ColorId == 3)
+                            {<a style="text-align: justify;color:green;"><b>Yeşil</b></a> }
+                            @if (q.ColorId == 4)
+                            {<a style="text-align: justify;color:blue;"><b>Mavi</b></a> }
+
+                        </p><br>
+                        <p style="text-align: justify;">@q.Character</p><br>
+                    }
+
+                    <p style="text-align: justify;">
+                        <strong>Karakter Grubunuza Göre Tavsiyeler:</strong>
+                    </p><br>
+
+                    @if (karakter == "A")
+                    {
+                        <p style="text-align: justify;">
+                            Hatasız kul olmayacağını kabul edin ve esnek olun.
+                            Herkesin zayıf bir yönü olduğunu kabul edin.
+                            Başkalarının da haklı olabileceğini kabul edin.
+                            Konuşurken emir kipi kullanmayın.
+                            Her şeye karışmaktan uzak durun.
+                            Sabırlı olmayı öğrenin.
+                            İnsanları küçümsemeyin.
+                            Her zaman lider olamayacağınızı kabul edin.
+                        </p><br>
+                    }
+                    @if (karakter == "B")
+                    {
+                        <p style="text-align: justify;">
+                            Aldığınız emanetlere dikkat edin. Aldığınız emaneti zamanında ve zarar vermeden geri verin.
+                            Az konuşup çok dinleyin.
+                            Asla ertelemeyin. Üşenmeyin ve vazgeçmeyin.
+                            Karşınızdaki kişinin beden diline dikkat edin.
+                            Çocukluktan ve saflıktan kurtulun. İçinizdeki çocuğu canlı tutun; ama  yer yerde ortaya çıkarmayın.
+                            Daha düzenli olun.
+                            İnsanların sözlerini kesmeyin.
+                            Olayları fazla büyütmeyin.
+                            Konuşmalarınızda daha net ve açıklayıcı olmaya özen gösterin.
+                        </p><br>
+                    }
+                    @if (karakter == "C")
+                    {
+                        <p style="text-align: justify;">
+                            Başkalarının sessizliğinizden istifade etmelerine müsaade etmeyin.
+                            Her şeye evet derseniz “evet”in bir kıymeti kalmaz. Hayır demeyi de
+                            öğrenin.
+                            En kötü kararın kararsızlık olduğunu bilin.
+                            Duygularınızı açmayı öğrenin.
+                            Kendi kendinizi motive etmeyi öğrenin. Motivasyonunuz için başkalarının görüşlerini beklemeyin.
+                            Tembelliği bırakın ve işlerinizi ertelemeyin.
+                            Sorumluluk almaya gayret gösterin.
+                            Yeni şeyler denemeye çalışın.
+                            Daha enerjik olmaya çalışın.
+                        </p><br>
+                    }
+
+                    @if (karakter == "D")
+                    {
+                        <p style="text-align: justify;">
+                            İyi bir şey yaptıklarında insanları takdir edin.
+                            İnsanlar bir şeyi sizin kadar mükemmel yapmasalar da beğeninizi gösterin.
+                            Ayrıntıları hesaplarken bütünü kaçırmayın.
+                            Yaptığınız işi nasıl yapacağınızı düşünürken niçin yaptığınızı da unutmayın.
+                            Her zaman ve en iyi olmaya çalışmayın. İyi olmanız zaten yeterlidir.
+                            Kendinize güvenin ve potansiyelinizin farkında olun.
+                            Kendinizi fazla eleştirmeyin.
+                            Hayatın olumlu yönlerini görmeye çalışın. Küçük şeyleri dert etmeyin.
+                        </p><br>
+                    }
+
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

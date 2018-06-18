@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalityTest", "PersonalityTest\PersonalityTest.csproj", "{EEC2538D-B413-42CF-B2C2-031BE1F06911}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PtEFLib", "PtEFLib\PtEFLib.csproj", "{59F23E12-F958-4A4D-B322-ED7622D83C0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEF", "TestEF\TestEF.csproj", "{D189C4C3-2976-488E-A396-B77E9A0A7D3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEC2538D-B413-42CF-B2C2-031BE1F06911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC2538D-B413-42CF-B2C2-031BE1F06911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC2538D-B413-42CF-B2C2-031BE1F06911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC2538D-B413-42CF-B2C2-031BE1F06911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59F23E12-F958-4A4D-B322-ED7622D83C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F23E12-F958-4A4D-B322-ED7622D83C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59F23E12-F958-4A4D-B322-ED7622D83C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59F23E12-F958-4A4D-B322-ED7622D83C0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D189C4C3-2976-488E-A396-B77E9A0A7D3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D189C4C3-2976-488E-A396-B77E9A0A7D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D189C4C3-2976-488E-A396-B77E9A0A7D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D189C4C3-2976-488E-A396-B77E9A0A7D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,187 @@
+﻿@{
+    List<PersonalityTest.Models.Survey> questions = new PersonalityTest.Controllers.ValuesController().GetQuestionList();
+}
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <article>
+                    <p style="text-align: justify;"><strong>Her soru için toplam <strong>2</strong> şık seçilerek <strong>15 soru</strong> tamamlanmalıdır. Dilerseniz aynı cevabı 2 kere işaretleyebilirsiniz.</strong></p><br>
+
+                    @{
+                        int soru_id = 1;
+                        foreach (var a in questions)
+                        {
+                            <input value="0" type="hidden" id="sayac_@soru_id">
+                            <button type="button" class="btn btn-warning" style="margin-bottom:1%">@soru_id) @a.QuestionText.ToUpper()</button>
+                            <input value="TOPLAM (2) ŞIK SEÇEBİLİRSİNİZ.." id="bilgilendirme_@soru_id" class="btn btn-dark" disabled="disabled" style="width:21%; margin-bottom:1%">
+                            <br>
+
+                            char karakter = 'A';
+                            foreach (var b in a.QOptions)
+                            {
+                                <button type="button" class="btn soru soru_@soru_id cevap_@karakter btn-red" style="margin:1px">@karakter) @b.OptionText.ToUpper() </button>
+                                <br>
+
+                                if (karakter == 'C') { karakter = 'D'; }
+                                if (karakter == 'B') { karakter = 'C'; }
+                                if (karakter == 'A') { karakter = 'B'; }
+                            }
+                            soru_id++;
+                            <br><br>
+                        }
+                    }
+
+                    <input value="0" type="hidden" id="toplamA">
+                    <input value="0" type="hidden" id="toplamB">
+                    <input value="0" type="hidden" id="toplamC">
+                    <input value="0" type="hidden" id="toplamD">
+
+                    <button type="button" class="btn bitir btn-brown" style="width:40%;margin-left:30%">Anketi Bitir!</button>
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+    <script>
+        $(".soru").on('click', function () {
+            var buton = $(this);
+            var buton_class = $(this).attr('class').split(' ');
+
+            var soru_id = buton_class[2].split('_');
+            var cevap_sikki = buton_class[3].split('_');
+            var sayac = $('#sayac_' + soru_id[1]);
+
+
+            if (buton_class[4] == 'btn-red') {
+                if (sayac.val() < 2) {
+                    buton.removeClass('btn-red');
+                    buton.addClass('btn-blue');
+                    sayac.val(parseInt(sayac.val()) + 1);
+
+                    if (cevap_sikki[1] == 'A') {
+                        $('#toplamA').val(parseInt($('#toplamA').val()) + 1);
+                    }
+                    if (cevap_sikki[1] == 'B') {
+                        $('#toplamB').val(parseInt($('#toplamB').val()) + 1);
+                    }
+                    if (cevap_sikki[1] == 'C') {
+                        $('#toplamC').val(parseInt($('#toplamC').val()) + 1);
+                    }
+                    if (cevap_sikki[1] == 'D') {
+                        $('#toplamD').val(parseInt($('#toplamD').val()) + 1);
+                    }
+                }
+            }
+            if (buton_class[4] == 'btn-blue') {
+                var gecis = 0;
+                if (sayac.val() < 2) {
+                    buton.removeClass('btn-blue');
+                    buton.addClass('btn-green');
+                    sayac.val(parseInt(sayac.val()) + 1);
+
+                    if (cevap_sikki[1] == 'A') {
+                        $('#toplamA').val(parseInt($('#toplamA').val()) + 1);
+                    }
+                    if (cevap_sikki[1] == 'B') {
+                        $('#toplamB').val(parseInt($('#toplamB').val()) + 1);
+                    }
+                    if (cevap_sikki[1] == 'C') {
+                        $('#toplamC').val(parseInt($('#toplamC').val()) + 1);
+                    }
+                    if (cevap_sikki[1] == 'D') {
+                        $('#toplamD').val(parseInt($('#toplamD').val()) + 1);
+                    }
+                    gecis = 1;
+                }
+                if (sayac.val() == 2 && gecis == 0) {
+                    buton.removeClass('btn-blue');
+                    buton.addClass('btn-red');
+                    sayac.val(parseInt(sayac.val()) - 1);
+
+                    if (cevap_sikki[1] == 'A') {
+                        $('#toplamA').val(parseInt($('#toplamA').val()) - 1);
+                    }
+                    if (cevap_sikki[1] == 'B') {
+                        $('#toplamB').val(parseInt($('#toplamB').val()) - 1);
+                    }
+                    if (cevap_sikki[1] == 'C') {
+                        $('#toplamC').val(parseInt($('#toplamC').val()) - 1);
+                    }
+                    if (cevap_sikki[1] == 'D') {
+                        $('#toplamD').val(parseInt($('#toplamD').val()) - 1);
+                    }
+                }
+
+            }
+            if (buton_class[4] == 'btn-green') {
+                buton.removeClass('btn-green');
+                buton.addClass('btn-red');
+                sayac.val(0);
+
+                if (cevap_sikki[1] == 'A') {
+                    $('#toplamA').val(parseInt($('#toplamA').val()) - 2);
+                }
+                if (cevap_sikki[1] == 'B') {
+                    $('#toplamB').val(parseInt($('#toplamB').val()) - 2);
+                }
+                if (cevap_sikki[1] == 'C') {
+                    $('#toplamC').val(parseInt($('#toplamC').val()) - 2);
+                }
+                if (cevap_sikki[1] == 'D') {
+                    $('#toplamD').val(parseInt($('#toplamD').val()) - 2);
+                }
+            }
+
+            if (sayac.val() == 0) {
+                $('#bilgilendirme_' + soru_id[1]).val("TOPLAM (2) ŞIK SEÇEBİLİRSİNİZ..");
+            }
+            if (sayac.val() == 1) {
+                $('#bilgilendirme_' + soru_id[1]).val("1 TANE DAHA SEÇMELİSİNİZ..");
+            }
+            if (sayac.val() == 2) {
+                $('#bilgilendirme_' + soru_id[1]).val("DAHA FAZLA SEÇEMEZSİNİZ..");
+            }
+        });
+    </script>
+    <script>
+        $(".bitir").on('click', function () {
+            var isAccept = true;
+            for (var i = 1; i < 16; i++) {
+                if ($('#bilgilendirme_' + i).val() == 'TOPLAM (2) ŞIK SEÇEBİLİRSİNİZ..' || $('#bilgilendirme_' + i).val() == '1 TANE DAHA SEÇMELİSİNİZ..') {
+                    alert(i + ". soruda işaretleme yapmadınız!");
+                    isAccept = false;
+                    break;
+                } 
+            }
+
+
+            
+            if (isAccept == true) {
+                var toplamA = $('#toplamA').val();
+                var toplamB = $('#toplamB').val();
+                var toplamC = $('#toplamC').val();
+                var toplamD = $('#toplamD').val();
+
+                if (toplamA>toplamB && toplamA>toplamC && toplamA > toplamD) {
+                    window.location = "/Home/Sonuc/A";
+                }
+                if (toplamB > toplamA && toplamB > toplamC && toplamB > toplamD) {
+                    window.location = "/Home/Sonuc/B";
+                }
+                if (toplamC > toplamA && toplamC > toplamB && toplamC > toplamD) {
+                    window.location = "/Home/Sonuc/C";
+                }
+                if (toplamD > toplamA && toplamD > toplamB && toplamD > toplamC) {
+                    window.location = "/Home/Sonuc/D";
+                }
+            }
+        });
+    </script>
+}
